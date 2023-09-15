@@ -10,6 +10,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 clsf = pipeline("sentiment-analysis", model=model, tokenizer=tokenizer)
 
+# can batch multiple sentences together
 X_train = ["This product is great!",
            "I would not reccomend this product to my enemies...",
            "I like rice and beans for dinner.",
@@ -39,6 +40,7 @@ X_train = ["This product is great!",
 res = clsf(X_train)
 print(res)
 
+# ... and then classify sentiment all at once on the GPU
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 
 ## with PyTorch
